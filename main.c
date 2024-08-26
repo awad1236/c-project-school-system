@@ -4,245 +4,303 @@
 #include "main.h"
 
 student students[20000];
-int i = 0;
-int search(student a[2000],int x)
-{
-    for(int o = 0; o < 2000; o++)
-    {
-       if(x == a[o].id)
-       {
-           return 1;
-       }
+Teacher Teachers[20000];
+Admin Admins[20000] = {{"admin", "admin"}};
+int NumberOfStudents = 0;
+int NumberOfTeachers = 0;
+
+void AddTeacher(void) {
+    printf("Enter Username Of The Teacher: ");
+    scanf("%s", Teachers[NumberOfTeachers].Teacher_Name);
+
+    printf("Enter Password Of The Teacher: ");
+    scanf("%s", Teachers[NumberOfTeachers].Teacher_Pass);
+    NumberOfTeachers++;
+}
+
+void RemoveTeacher(void) {
+    char x[100];
+    printf("\nEnter the Teacher Name to remove: ");
+    scanf("%s", x);
+
+    int idx = -1;
+    for (int j = 0; j < NumberOfTeachers; j++) {
+        if (strcmp(x, Teachers[j].Teacher_Name) == 0) {
+            idx = j;
+            break;
+        }
+    }
+
+    if (idx >= 0) {
+        printf("===================\nTeacher %s has been removed successfully\n===================\n", Teachers[idx].Teacher_Name);
+        for (int j = idx; j < NumberOfTeachers - 1; j++) {
+            Teachers[j] = Teachers[j + 1];
+        }
+        NumberOfTeachers--;
+    } else {
+        printf("There is no teacher with this name\n");
+    }
+}
+
+int search(student a[20000], int x) {
+    for (int o = 0; o < NumberOfStudents; o++) {
+        if (x == a[o].id) {
+            return 1;
+        }
     }
     return 0;
 }
+
+void EditStudentDegree(void) {
+    printf("\nEnter the student ID: ");
+    int x = 0;
+    scanf("%i", &x);
+    int idx = -1;
+    for (int j = 0; j < NumberOfStudents; j++) {
+        if (x == students[j].id) {
+            idx = j;
+            break;
+        }
+    }
+    if (idx >= 0) {
+        printf("==================\nStudent: %s\nID: %d\nDegree: %lf\n=====================\n", students[idx].Student_Name, students[idx].id,
+               students[idx].degree);
+        printf("New degree: ");
+        scanf("%lf", &students[idx].degree);
+        printf("===================\nChanges have been successfully applied\n===================\n");
+    } else {
+        printf("There is no student with this ID\n");
+    }
+}
+
+void student_Search(void) {
+    printf("\nEnter the student ID: ");
+    int x = 0;
+    scanf("%i", &x);
+    int idx = -1;
+    for (int j = 0; j < NumberOfStudents; j++) {
+        if (x == students[j].id) {
+            idx = j;
+            break;
+        }
+    }
+    if (idx >= 0) {
+        printf("======================================\n");
+        printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
+    } else {
+        printf("===================\nThere is no student with this ID\n===================\n");
+    }
+}
+
+void Dispaly(void) {
+    printf("\nEnter the student ID: ");
+    int x = 0;
+    scanf("%i", &x);
+    int idx = -1;
+    for (int j = 0; j < NumberOfStudents; j++) {
+        if (x == students[j].id) {
+            idx = j;
+            break;
+        }
+    }
+    if (idx >= 0) {
+        printf("======================================\n");
+        printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
+    } else {
+        printf("===================\nThere is no student with this ID\n===================\n");
+    }
+}
+
+void DisplyAll(void) {
+    if (NumberOfStudents == 0) {
+        printf("No students to display.\n");
+    } else {
+        printf("===========================================================================\n");
+        printf("| %-20s | %-10s | %-10s |\n", "Name", "ID", "Grade");
+        printf("===========================================================================\n");
+        for (int j = 0; j < NumberOfStudents; j++) {
+            printf("| %-20s | %-10d | %-10.2lf |\n", students[j].Student_Name, students[j].id, students[j].degree);
+        }
+        printf("===========================================================================\n");
+    }
+}
+
+void Error(void) {
+    printf("\nInvalid input\n");
+}
+
+void WrongPass(void) {
+    printf("\nWrong password or username\n");
+}
+
+void AddStudent(void) {
+    printf("Enter student name: ");
+    scanf(" %[^\n]%*c", students[NumberOfStudents].Student_Name);
+    int p;
+    printf("Enter student ID: ");
+    scanf("%d", &p);
+    while (search(students, p)) {
+        printf("\nThis ID has been taken before\n");
+        printf("Enter student ID: ");
+        scanf("%d", &p);
+    }
+    students[NumberOfStudents].id = p;
+    printf("Enter student degree: ");
+    scanf("%lf", &students[NumberOfStudents].degree);
+    printf("===================\nStudent has been added\n===================\n");
+    NumberOfStudents++;
+}
+
+void Remove(void) {
+    printf("\nEnter the student ID to remove: ");
+    int x = 0;
+    scanf("%i", &x);
+    int idx = -1;
+    for (int j = 0; j < NumberOfStudents; j++) {
+        if (x == students[j].id) {
+            idx = j;
+            break;
+        }
+    }
+
+    if (idx >= 0) {
+        printf("===================\nStudent %s has been removed successfully\n===================\n", students[idx].Student_Name);
+        for (int j = idx; j < NumberOfStudents - 1; j++) {
+            students[j] = students[j + 1];
+        }
+        NumberOfStudents--;
+    } else {
+        printf("There is no student with this ID\n");
+    }
+}
+
+void EditStudentInfo(void) {
+    printf("\nEnter the student ID: ");
+    int x = 0;
+    scanf("%i", &x);
+    int idx = -1;
+    for (int j = 0; j < NumberOfStudents; j++) {
+        if (x == students[j].id) {
+            idx = j;
+            break;
+        }
+    }
+    if (idx >= 0) {
+        printf("Student: %s\nID: %d\nDegree: %lf", students[idx].Student_Name, students[idx].id, students[idx].degree);
+        printf("\nNew username: ");
+        scanf(" %[^\n]%*c", students[idx].Student_Name);
+        printf("New ID: ");
+        scanf("%d", &students[idx].id);
+        printf("New degree: ");
+        scanf("%lf", &students[idx].degree);
+        printf("===================\nChanges have been successfully applied\n===================\n");
+    } else {
+        printf("There is no student with this ID\n");
+    }
+}
+
+int checkPassAdmin(void) {
+    char user[100];
+    char pass[100];
+    printf("username: ");
+    scanf("%s", user);
+    printf("password: ");
+    scanf("%s", pass);
+
+    for (int i = 0; i < 2000; i++) {
+        if (strcmp(Admins[i].Admin_Name, user) == 0 && strcmp(Admins[i].Admin_Pass, pass) == 0) {
+            return 1; // Credentials match
+        }
+    }
+    return 0; // No match found
+}
+
+int checkPassTeacher(void) {
+    char user[100];
+    char pass[100];
+
+    printf("username: ");
+    scanf("%s", user);
+    printf("password: ");
+    scanf("%s", pass);
+
+    for (int i = 0; i < NumberOfTeachers; i++) {
+        if (strcmp(Teachers[i].Teacher_Name, user) == 0 && strcmp(Teachers[i].Teacher_Pass, pass) == 0) {
+            return 1; // Credentials match
+        }
+    }
+
+    return 0; // No match found
+}
+
 int main(void) {
     while (1) {
-        printf("\n1- Admin   [A]\n2- teacher [T]\n3- Student [S]\n==========\nenter your role: ");
+        printf("\n1- Admin   [A]\n2- teacher [T]\n3- Student [S]\n==========\nEnter your role: ");
         char a;
         scanf(" %c", &a);
 
         if (a == 'S') {
-            printf("\nEnter the student ID: ");
-            int x = 0;
-            scanf("%i", &x);
-            int idx = -1;
-            for (int j = 0; j < 20000; j++) {
-                if (x == students[j].id) {
-                    idx = j;
-                    break;
-                }
-            }
-            if (idx >= 0) {
-                printf("======================================\n");
-                printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
-            } else {
-                printf("===================\nThere is no student with this ID\n===================\n");
-            }
+            student_Search();
         }
         else if (a == 'T') {
-            char user[100];
-            char pass[100];
-            printf("username: ");
-            scanf("%s", user);
-            printf("password: ");
-            scanf("%s", pass);
-
-            const char password[] = "teacher";
-            const char username[] = "teacher";
-
-            if (strcmp(pass, password) == 0 && strcmp(user, username) == 0) {
-                printf("\n1- Edit Grade [E]\n4- Display [D]3- Display All [X]\nEnter the process: ");
-
+            if (checkPassTeacher()) {
+                printf("\n1- Edit Grade [E]\n4- Display [D]\n3- Display All [X]\nEnter the process: ");
                 char h;
-                scanf(" %c", &h);
+                getchar(); // Remove newline character from input buffer
+                scanf("%c", &h);
+
                 if (h == 'E') {
-                    printf("\nEnter the student ID: ");
-                    int x = 0;
-                    scanf("%i", &x);
-                    int idx = -1;
-                    for (int j = 0; j < 20000; j++) {
-                        if (x == students[j].id) {
-                            idx = j;
-                            break;
-                        }
-                    }
-                    if (idx >= 0) {
-                        printf("==================\nStudent: %s\nID: %d\nDegree: %lf\n=====================\n", students[idx].Student_Name, students[idx].id,
-                               students[idx].degree);
-                        printf("New degree: ");
-                        scanf("%lf", &students[idx].degree);
-                        printf("===================\nChanges have been successfully applied\n===================\n");
-                    } else {
-                        printf("There is no student with this ID\n");
-                    }
+                    EditStudentDegree();
                 }
                 else if (h == 'D') {
-                    printf("\nEnter the student ID: ");
-                    int x = 0;
-                    scanf("%i", &x);
-                    int idx = -1;
-                    for (int j = 0; j < 20000; j++) {
-                        if (x == students[j].id) {
-                            idx = j;
-                            break;
-                        }
-                    }
-                    if (idx >= 0) {
-                        printf("======================================\n");
-                        printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
-                    } else {
-                        printf("===================\nThere is no student with this ID\n===================\n");
-                    }
+                    Dispaly();
                 }
-                else if(h == 'X')
-                {
-                    if (i == 0) {
-                        printf("No students to display.\n");
-                    } else {
-                        printf("===========================================================================\n");
-                        printf("| %-20s | %-10s | %-10s |\n", "Name", "ID", "Grade");
-                        printf("===========================================================================\n");
-                        for (int j = 0; j < i; j++) {
-                            printf("| %-20s | %-10d | %-10.2lf |\n", students[j].Student_Name, students[j].id, students[j].degree);
-                        }
-                        printf("===========================================================================\n");
-                    }
+                else if (h == 'X') {
+                    DisplyAll();
                 }
-                else
-                {
-                    printf("\nInvalid input\n");
+                else {
+                    Error();
                 }
             }
             else {
-                printf("\nWrong password or username\n");
+                WrongPass();
             }
-
         }
-
         else if (a == 'A') {
-            char user[100];
-            char pass[100];
-            printf("username: ");
-            scanf("%s", user);
-            printf("password: ");
-            scanf("%s", pass);
-
-            const char password[] = "admin";
-            const char username[] = "admin";
-
-            if (strcmp(pass, password) == 0 && strcmp(user, username) == 0) {
-                printf("\n1- Edit [E]\n2- Remove [R]\n3- Add [A]\n4- Display [D]\n5- Display All [X]\nEnter the process: ");
+            if (checkPassAdmin()) {
+                printf("\n1- Edit [E]\n2- Remove [R]\n3- Add Student [A]\n4- Display [D]\n5- Display All [X]\n6- Add Teacher [M]\n7- Remove Teacher [N]\nEnter the process: ");
                 char h;
                 scanf(" %c", &h);
 
                 if (h == 'E') {
-                    printf("\nEnter the student ID: ");
-                    int x = 0;
-                    scanf("%i", &x);
-                    int idx = -1;
-                    for (int j = 0; j < 20000; j++) {
-                        if (x == students[j].id) {
-                            idx = j;
-                            break;
-                        }
-                    }
-                    if (idx >= 0) {
-                        printf("Student: %s\nID: %d\nDegree: %lf", students[idx].Student_Name, students[idx].id, students[idx].degree);
-                        printf("\nNew username: ");
-                        scanf(" %[^\n]%*c", students[i].Student_Name);
-                        printf("New ID: ");
-                        scanf("%d", &students[idx].id);
-                        printf("New degree: ");
-                        scanf("%lf", &students[idx].degree);
-                        printf("===================\nChanges have been successfully applied\n===================\n");
-                    } else {
-                        printf("There is no student with this ID\n");
-                    }
+                    EditStudentInfo();
                 }
                 else if (h == 'R') {
-                    printf("\nEnter the student ID to remove: ");
-                    int x = 0;
-                    scanf("%i", &x);
-                    int idx = -1;
-                    for (int j = 0; j < i; j++) {
-                        if (x == students[j].id) {
-                            idx = j;
-                            break;
-                        }
-                    }
-
-                    if (idx >= 0) {
-                        printf("===================\nStudent %s has been removed successfully\n===================\n", students[idx].Student_Name);
-                        for (int j = idx; j <= i ; j++) {
-                            students[j] = students[j + 1];
-                        }
-                        i--;
-
-                    } else {
-                        printf("There is no student with this ID\n");
-                    }
+                    Remove();
                 }
                 else if (h == 'A') {
-                    printf("Enter student name: ");
-                    scanf(" %[^\n]%*c", students[i].Student_Name);
-                    int p;
-                    printf("Enter student ID: ");
-                    scanf("%d", &p);
-                    while(search(students,p))
-                    {
-                        printf("\nthis ID has been taken before\n");
-                        printf("Enter student ID: ");
-                        scanf("%d", &p);
-                    }
-                    students[i].id = p;
-                    printf("Enter student degree: ");
-                    scanf("%lf", &students[i].degree);
-                    printf("===================\nStudent has been added\n===================\n");
-                    i++;
+                    AddStudent();
                 }
                 else if (h == 'D') {
-                    printf("\nEnter the student ID: ");
-                    int x = 0;
-                    scanf("%i", &x);
-                    int idx = -1;
-                    for (int j = 0; j < 20000; j++) {
-                        if (x == students[j].id) {
-                            idx = j;
-                            break;
-                        }
-                    }
-                    if (idx >= 0) {
-                        printf("======================================\n");
-                        printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
-                    } else {
-                        printf("===================\nThere is no student with this ID\n===================\n");
-                    }
+                    Dispaly();
                 }
                 else if (h == 'X') {
-                    if (i == 0) {
-                        printf("No students to display.\n");
-                    } else {
-                        printf("===========================================================================\n");
-                        printf("| %-20s | %-10s | %-10s |\n", "Name", "ID", "Grade");
-                        printf("===========================================================================\n");
-                        for (int j = 0; j < i; j++) {
-                            printf("| %-20s | %-10d | %-10.2lf |\n", students[j].Student_Name, students[j].id, students[j].degree);
-                        }
-                        printf("===========================================================================\n");
-                    }
+                    DisplyAll();
+                } else if (h == 'M') {
+                    AddTeacher();
+                } else if (h == 'N') {
+                    RemoveTeacher();
                 }
-
                 else {
-                    printf("\nInvalid input\n");
+                    Error();
                 }
-            } else {
-                printf("\nWrong password or username\n");
+            }
+            else {
+                WrongPass();
             }
         }
         else {
-            printf("\nInvalid input\n");
+            Error();
         }
     }
-    return 0;
 }
