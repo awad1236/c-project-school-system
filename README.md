@@ -1,103 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Management System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-            overflow-x: auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>School Management System</h1>
-        
-        <h2>Overview</h2>
-        <p>
-            This project is a simple console-based School Management System written in C. It allows administrators and teachers to manage student and teacher records, including adding, removing, and editing information such as student grades and teacher credentials. The program provides different functionalities based on the user's role: Admin, Teacher, or Student.
-        </p>
-        
-        <h2>Features</h2>
+# Student Management System
+<hr/>
 
-        <h3>Admin Features</h3>
-        <ul>
-            <li><strong>Add Student:</strong> Add a new student to the system with a unique ID.</li>
-            <li><strong>Remove Student:</strong> Remove an existing student from the system using their ID.</li>
-            <li><strong>Edit Student Information:</strong> Modify student details like name, ID, and grade.</li>
-            <li><strong>Display Student:</strong> Display the details of a student using their ID.</li>
-            <li><strong>Display All Students:</strong> Show a list of all students in the system.</li>
-            <li><strong>Add Teacher:</strong> Add a new teacher to the system.</li>
-            <li><strong>Remove Teacher:</strong> Remove a teacher from the system using their username.</li>
-        </ul>
+## Overview
 
-        <h3>Teacher Features</h3>
-        <ul>
-            <li><strong>Edit Student Grade:</strong> Update the grade of a student using their ID.</li>
-            <li><strong>Display Student:</strong> Display the details of a student using their ID.</li>
-            <li><strong>Display All Students:</strong> Show a list of all students in the system.</li>
-        </ul>
+This C program is a simple student management system that allows administrators and teachers to manage student records. The program includes features for adding, removing, and editing student and teacher records, as well as displaying student information. 
 
-        <h3>Student Features</h3>
-        <ul>
-            <li><strong>Search Student:</strong> Search for a student using their ID and display their details.</li>
-        </ul>
+## Features
 
-        
+### 1. **User Roles**
+   - **Admin**: Has full access to the system, including the ability to manage both students and teachers.
+   - **Teacher**: Can access and modify student grades and view student information.
+   - **Student**: Can search for their own information.
 
-        <h2>How to Use</h2>
-        <ol>
-            <li><strong>Role Selection:</strong> After running the program, you will be prompted to select your role:
-                <ul>
-                    <li>Admin [A]</li>
-                    <li>Teacher [T]</li>
-                    <li>Student [S]</li>
-                </ul>
-            </li>
-            <li><strong>Authentication:</strong>
-                <ul>
-                    <li>Admin and Teacher roles require a username and password to access the system.</li>
-                    <li>Default Admin credentials: <code>admin</code> / <code>admin</code>.</li>
-                </ul>
-            </li>
-            <li><strong>Function Selection:</strong> Once authenticated, you will be prompted to select a function based on your role.</li>
-        </ol>
+### 2. **Admin Functions**
+   - **Add Student**: Allows the admin to add a new student to the system.
+   - **Remove Student**: Allows the admin to remove a student from the system.
+   - **Edit Student Information**: Allows the admin to edit a student's information (name, ID, and degree).
+   - **Display Student Information**: Displays information for a specific student.
+   - **Display All Students**: Displays information for all students in the system.
+   - **Add Teacher**: Allows the admin to add a new teacher to the system.
+   - **Remove Teacher**: Allows the admin to remove a teacher from the system.
 
-        <h2>Code Structure</h2>
-        <ul>
-            <li><strong>main.c:</strong> Contains the main function and other functions related to different user roles.</li>
-            <li><strong>main.h:</strong> Header file defining the data structures for students, teachers, and admins.</li>
-        </ul>
+### 3. **Teacher Functions**
+   - **Edit Student Degree**: Allows teachers to update a student's grade.
+   - **Display Student Information**: Displays information for a specific student.
+   - **Display All Students**: Displays information for all students in the system.
 
-        <h2>Data Structures</h2>
-        <ul>
-            <li><strong>student:</strong> Represents a student with attributes like name, ID, and grade.</li>
-            <li><strong>Teacher:</strong> Represents a teacher with attributes like name and password.</li>
-            <li><strong>Admin:</strong> Represents an admin with attributes like name and password.</li>
-        </ul>
+### 4. **Student Functions**
+   - **Search Student Information**: Allows students to search for their own information by ID.
 
-      
-</body>
-</html>
+## Files Included
+
+- `main.c`: The main program file containing the implementation of the student management system.
+- `main.h`: Header file containing structure definitions and function prototypes.
+
+
+## Usage Instructions
+
+1. **Start the Program**: When you run the program, you will be prompted to select your role (Admin, Teacher, or Student).
+   
+2. **Admin Role**:
+   - Log in using the default credentials:
+     - Username: `admin`
+     - Password: `admin`
+   - After logging in, choose from the available options to manage students or teachers.
+
+3. **Teacher Role**:
+   - Log in with the username and password provided by the admin.
+   - After logging in, you can modify student grades and view student information.
+
+4. **Student Role**:
+   - Enter your ID to search for your information.
+
