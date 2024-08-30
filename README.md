@@ -37,18 +37,20 @@ This C program is a simple student management system that allows administrators 
 
 ## Usage Instructions
 
-1. **Start the Program**: When you run the program, you will be prompted to select your role (Admin, Teacher, or Student).
+1. **Start the Program**:<br/>
+-run the program on the cmd of the windows or you will be have to edit the commend "cls" to "clear" in the lines(74,123,156,174,256,284)<br/>
+-When you run the program, you will be prompted to select your role (Admin, Teacher, or Student).
    
-2. **Admin Role**:
+3. **Admin Role**:
    - Log in using the default credentials:
      - Username: `admin`
      - Password: `admin`
    - After logging in, choose from the available options to manage students or teachers.
 
-3. **Teacher Role**:
+4. **Teacher Role**:
    - Log in with the username and password provided by the admin.
    - After logging in, you can modify student grades and view student information.
 
-4. **Student Role**:
+5. **Student Role**:
    - Enter your ID to search for your information.
 
