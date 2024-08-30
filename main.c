@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
+#include <conio.h>
+#include<stdlib.h>
 
 student students[20000];
 Teacher Teachers[20000];
@@ -69,6 +71,7 @@ void EditStudentDegree(void) {
                students[idx].degree);
         printf("New degree: ");
         scanf("%lf", &students[idx].degree);
+        system("cls");
         printf("===================\nChanges have been successfully applied\n===================\n");
     } else {
         printf("There is no student with this ID\n");
@@ -117,6 +120,7 @@ void DisplyAll(void) {
     if (NumberOfStudents == 0) {
         printf("No students to display.\n");
     } else {
+        system("cls");
         printf("===========================================================================\n");
         printf("| %-20s | %-10s | %-10s |\n", "Name", "ID", "Grade");
         printf("===========================================================================\n");
@@ -149,6 +153,7 @@ void AddStudent(void) {
     students[NumberOfStudents].id = p;
     printf("Enter student degree: ");
     scanf("%lf", &students[NumberOfStudents].degree);
+    system("cls");
     printf("===================\nStudent has been added\n===================\n");
     NumberOfStudents++;
 }
@@ -166,6 +171,7 @@ void Remove(void) {
     }
 
     if (idx >= 0) {
+        system("cls");
         printf("===================\nStudent %s has been removed successfully\n===================\n", students[idx].Student_Name);
         for (int j = idx; j < NumberOfStudents - 1; j++) {
             students[j] = students[j + 1];
@@ -247,6 +253,7 @@ int main(void) {
         else if (a == 'T') {
 
                if (checkPassTeacher()) {
+                   system("cls");
                    while(1) {
                        printf("\n1- Edit Grade [E]\n2- Display [D]\n3- Display All [X]\n4- Exit [Q]\nEnter the process: ");
                    char h;
@@ -272,9 +279,12 @@ int main(void) {
 
         }
         else if (a == 'A') {
+
             if (checkPassAdmin()) {
-               while(1) {
-                    printf("\n1- Edit [E]\n2- Remove [R]\n3- Add Student [A]\n4- Display [D]\n5- Display All [X]\n6- Add Teacher [M]\n7- Remove Teacher [N]\n8- Exit [Q]\nEnter the process: ");
+                system("cls");
+                while(1) {
+                    printf("\n1- Edit [E]\n2- Remove [R]\n3- Add Student [A]\n4- Display [D]\n5- Display All [X]\n"
+                           "6- Add Teacher [M]\n7- Remove Teacher [N]\n8- Exit [Q]\nEnter the process: ");
                     char h;
                     scanf(" %c", &h);
 
