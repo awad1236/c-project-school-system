@@ -11,9 +11,10 @@ int NumberOfTeachers = 0;
 
 void AddTeacher(void) {
     printf("Enter Username Of The Teacher: ");
-    scanf("%s", Teachers[NumberOfTeachers].Teacher_Name);
+    scanf(" %[^\n]%*c", Teachers[NumberOfTeachers].Teacher_Name);
 
     printf("Enter Password Of The Teacher: ");
+    fflush(stdin);
     scanf("%s", Teachers[NumberOfTeachers].Teacher_Pass);
     NumberOfTeachers++;
 }
@@ -21,7 +22,8 @@ void AddTeacher(void) {
 void RemoveTeacher(void) {
     char x[100];
     printf("\nEnter the Teacher Name to remove: ");
-    scanf("%s", x);
+    fflush(stdin);
+    scanf(" %[^\n]%*c", x);
 
     int idx = -1;
     for (int j = 0; j < NumberOfTeachers; j++) {
@@ -220,7 +222,7 @@ int checkPassTeacher(void) {
     char pass[100];
 
     printf("username: ");
-    scanf("%s", user);
+    scanf(" %[^\n]%*c", user);
     printf("password: ");
     scanf("%s", pass);
 
@@ -243,56 +245,60 @@ int main(void) {
             student_Search();
         }
         else if (a == 'T') {
-            if (checkPassTeacher()) {
-                printf("\n1- Edit Grade [E]\n4- Display [D]\n3- Display All [X]\nEnter the process: ");
-                char h;
-                getchar(); // Remove newline character from input buffer
-                scanf("%c", &h);
 
-                if (h == 'E') {
-                    EditStudentDegree();
+               if (checkPassTeacher()) {
+                   while(1) {
+                       printf("\n1- Edit Grade [E]\n2- Display [D]\n3- Display All [X]\n4- Exit [Q]\nEnter the process: ");
+                   char h;
+                   getchar(); // Remove newline character from input buffer
+                   scanf("%c", &h);
+
+                   if (h == 'E') {
+                       EditStudentDegree();
+                   } else if (h == 'D') {
+                       Dispaly();
+                   } else if (h == 'X') {
+                       DisplyAll();
+                   } else if (h == 'Q') {
+                       printf("\n");
+                       break;
+                   } else {
+                       Error();
+                   }
+               }
+           }else {
+                    WrongPass();
                 }
-                else if (h == 'D') {
-                    Dispaly();
-                }
-                else if (h == 'X') {
-                    DisplyAll();
-                }
-                else {
-                    Error();
-                }
-            }
-            else {
-                WrongPass();
-            }
+
         }
         else if (a == 'A') {
             if (checkPassAdmin()) {
-                printf("\n1- Edit [E]\n2- Remove [R]\n3- Add Student [A]\n4- Display [D]\n5- Display All [X]\n6- Add Teacher [M]\n7- Remove Teacher [N]\nEnter the process: ");
-                char h;
-                scanf(" %c", &h);
+               while(1) {
+                    printf("\n1- Edit [E]\n2- Remove [R]\n3- Add Student [A]\n4- Display [D]\n5- Display All [X]\n6- Add Teacher [M]\n7- Remove Teacher [N]\n8- Exit [Q]\nEnter the process: ");
+                    char h;
+                    scanf(" %c", &h);
 
-                if (h == 'E') {
-                    EditStudentInfo();
-                }
-                else if (h == 'R') {
-                    Remove();
-                }
-                else if (h == 'A') {
-                    AddStudent();
-                }
-                else if (h == 'D') {
-                    Dispaly();
-                }
-                else if (h == 'X') {
-                    DisplyAll();
-                } else if (h == 'M') {
-                    AddTeacher();
-                } else if (h == 'N') {
-                    RemoveTeacher();
-                }
-                else {
-                    Error();
+                    if (h == 'E') {
+                        EditStudentInfo();
+                    } else if (h == 'R') {
+                        Remove();
+                    } else if (h == 'A') {
+                        AddStudent();
+                    } else if (h == 'D') {
+                        Dispaly();
+                    } else if (h == 'X') {
+                        DisplyAll();
+                    } else if (h == 'M') {
+                        AddTeacher();
+                    } else if (h == 'N') {
+                        RemoveTeacher();
+                    }else if (h == 'Q') {
+                        printf("\n");
+                        break;
+                    }
+                    else {
+                        Error();
+                    }
                 }
             }
             else {
