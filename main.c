@@ -19,6 +19,8 @@ void AddTeacher(void) {
     fflush(stdin);
     scanf("%s", Teachers[NumberOfTeachers].Teacher_Pass);
     NumberOfTeachers++;
+    system("cls");
+    printf("===================\nTeacher %s has been added successfully\n===================\n", Teachers[NumberOfTeachers - 1].Teacher_Name);
 }
 
 void RemoveTeacher(void) {
@@ -36,6 +38,7 @@ void RemoveTeacher(void) {
     }
 
     if (idx >= 0) {
+        system("cls");
         printf("===================\nTeacher %s has been removed successfully\n===================\n", Teachers[idx].Teacher_Name);
         for (int j = idx; j < NumberOfTeachers - 1; j++) {
             Teachers[j] = Teachers[j + 1];
@@ -90,6 +93,7 @@ void student_Search(void) {
         }
     }
     if (idx >= 0) {
+        system("cls");
         printf("======================================\n");
         printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
     } else {
@@ -249,6 +253,7 @@ int main(void) {
 
         if (a == 'S') {
             student_Search();
+
         }
         else if (a == 'T') {
 
@@ -268,6 +273,7 @@ int main(void) {
                        DisplyAll();
                    } else if (h == 'Q') {
                        printf("\n");
+                       system("cls");
                        break;
                    } else {
                        Error();
@@ -300,10 +306,12 @@ int main(void) {
                         DisplyAll();
                     } else if (h == 'M') {
                         AddTeacher();
+
                     } else if (h == 'N') {
                         RemoveTeacher();
                     }else if (h == 'Q') {
                         printf("\n");
+                        system("cls");
                         break;
                     }
                     else {
