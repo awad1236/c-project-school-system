@@ -38,7 +38,7 @@ This C program is a simple student management system that allows administrators 
 ## Usage Instructions
 
 1. **Start the Program**:<br/>
-- run the program on the cmd of the windows or you will be have to edit the commend "cls" to "clear" or what is equal it on your OS in the lines(22,41,77,96,127,160,178,261,276,290,314)<br/><br/>
+- run the program on the cmd of the windows or you will be have to edit the commend "cls" to "clear" or what is equal it on your OS in the lines(30, 56, 99, 123, 154, 192, 215, 250, 304, 319, 333, 357)<br/><br/>
 - When you run the program, you will be prompted to select your role (Admin, Teacher, or Student).
    
 3. **Admin Role**:
