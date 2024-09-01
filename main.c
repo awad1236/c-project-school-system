@@ -4,6 +4,9 @@
 #include "main.h"
 #include <conio.h>
 #include<stdlib.h>
+#include <windows.h>
+
+
 
 student students[20000];
 Teacher Teachers[20000];
@@ -19,8 +22,14 @@ void AddTeacher(void) {
     fflush(stdin);
     scanf("%s", Teachers[NumberOfTeachers].Teacher_Pass);
     NumberOfTeachers++;
+    for(int i = 0 ; i < 20 ; i++)
+    {
+        printf("=");
+        Sleep(200);
+    }
     system("cls");
-    printf("===================\nTeacher %s has been added successfully\n===================\n", Teachers[NumberOfTeachers - 1].Teacher_Name);
+    printf("===================\nTeacher %s has been added successfully :D \n===================\n", Teachers[NumberOfTeachers - 1].Teacher_Name);
+
 }
 
 void RemoveTeacher(void) {
@@ -35,9 +44,15 @@ void RemoveTeacher(void) {
             idx = j;
             break;
         }
+
     }
 
     if (idx >= 0) {
+        for(int i = 0 ; i < 20 ; i++)
+        {
+            printf("=");
+            Sleep(200);
+        }
         system("cls");
         printf("===================\nTeacher %s has been removed successfully\n===================\n", Teachers[idx].Teacher_Name);
         for (int j = idx; j < NumberOfTeachers - 1; j++) {
@@ -51,6 +66,8 @@ void RemoveTeacher(void) {
 
 int search(student a[20000], int x) {
     for (int o = 0; o < NumberOfStudents; o++) {
+
+
         if (x == a[o].id) {
             return 1;
         }
@@ -74,6 +91,11 @@ void EditStudentDegree(void) {
                students[idx].degree);
         printf("New degree: ");
         scanf("%lf", &students[idx].degree);
+        for(int i = 0 ; i < 20 ; i++)
+        {
+            printf("=");
+            Sleep(200);
+        }
         system("cls");
         printf("===================\nChanges have been successfully applied\n===================\n");
     } else {
@@ -87,12 +109,17 @@ void student_Search(void) {
     scanf("%i", &x);
     int idx = -1;
     for (int j = 0; j < NumberOfStudents; j++) {
+
+            printf("=");
+            Sleep(200);
+
         if (x == students[j].id) {
             idx = j;
             break;
         }
     }
     if (idx >= 0) {
+
         system("cls");
         printf("======================================\n");
         printf("Student: %s\nID: %d\nDegree: %lf\n======================================\n", students[idx].Student_Name, students[idx].id, students[idx].degree);
@@ -157,6 +184,11 @@ void AddStudent(void) {
     students[NumberOfStudents].id = p;
     printf("Enter student degree: ");
     scanf("%lf", &students[NumberOfStudents].degree);
+    for(int i = 0 ; i < 20 ; i++)
+    {
+        printf("=");
+        Sleep(200);
+    }
     system("cls");
     printf("===================\nStudent has been added\n===================\n");
     NumberOfStudents++;
@@ -175,6 +207,11 @@ void Remove(void) {
     }
 
     if (idx >= 0) {
+        for(int i = 0 ; i < 20 ; i++)
+        {
+            printf("=");
+            Sleep(200);
+        }
         system("cls");
         printf("===================\nStudent %s has been removed successfully\n===================\n", students[idx].Student_Name);
         for (int j = idx; j < NumberOfStudents - 1; j++) {
@@ -205,6 +242,12 @@ void EditStudentInfo(void) {
         scanf("%d", &students[idx].id);
         printf("New degree: ");
         scanf("%lf", &students[idx].degree);
+        for(int i = 0 ; i < 20 ; i++)
+        {
+            printf("=");
+            Sleep(200);
+        }
+        system("cls");
         printf("===================\nChanges have been successfully applied\n===================\n");
     } else {
         printf("There is no student with this ID\n");
