@@ -1,3 +1,6 @@
+#ifndef MAIN_H_
+#define MAIN_H_
+
 typedef struct {
     char Student_Name[100];
     int id;
@@ -28,3 +31,4 @@ void Remove(void);
 void EditStudentInfo(void);
 int checkPassAdmin(void);
 int checkPassTeacher(void) ;
+#endif
